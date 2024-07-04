@@ -1,0 +1,47 @@
+.kaLayout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+     
+    .page {
+       height: 100%;
+     width: 100%;
+     display: flex  ;
+     flex-direction : column  ;
+        min-height: 100%;
+       position: relative; 
+    }
+    .tab{
+      background-color: #EBEBEB;
+      flex: 1;
+position: fixed;
+bottom: 0px;
+height: 50px;
+ 
+left: 0px;
+ 
+width: 100%;
+    }
+    .tabbar {
+      padding-bottom: 50px;
+                                                 
+      .adm-tab-bar-item {
+        color: #888c98;
+    
+      }
+  
+      .adm-tab-bar-item-active {
+        color: rgb(105, 174, 120);
+      }
+    }
+  }
+  
+  .kaDate {
+    .adm-picker-header {
+      a {
+        color: #69ae78;
+      }
+    }
+  }
+  
