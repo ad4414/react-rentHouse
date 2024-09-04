@@ -1,12 +1,9 @@
 import { Button, Popup, NavBar, Toast } from "antd-mobile";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { fetchCity, fetchHotCity } from "../Home/Store/swiper/city";
-
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import request from "../../api/request";
 let cityValue = "深圳";
 let cityId = "AREA|a6649a11-be98-b150";
@@ -26,7 +23,6 @@ const City = React.memo(() => {
     useSelector((state) => state.city.cityData)
   );
   const cityData = cacheMap.get(key);
-
   cacheMap.set(
     key1,
     useSelector((state) => state.city.hotCity)
@@ -46,7 +42,6 @@ const City = React.memo(() => {
       } else {
         cityList[first] = [element];
       }
-
       keyCity = Object.keys(cityList).sort();
     });
     return {
@@ -68,9 +63,9 @@ const City = React.memo(() => {
               return (
                 <li
                   key={item.value}
-                  onClick={(e) => {
+                  onClick={async(e) => {
                     console.log(item.value);
-                    request.get(`/area/community?name=${e.target.textContent}&id=${item.value}`).then((result) => {
+                   await request.get(`/area/community?name=${e.target.textContent}&id=${item.value}`).then((result) => {
                       console.log(result);
                       if (result.data.body.length === 0) {
                         Toast.show({
@@ -81,7 +76,7 @@ const City = React.memo(() => {
                       } else {
                         cityValue = e.target.textContent;
                         cityId = item.value;
-                        navigate("/");
+                        navigate("/",{state:{cityValue,cityId}});
                       }
                     });
                   }}
@@ -135,5 +130,4 @@ const CityList = () => {
     </div>
   );
 };
-export { cityValue, cityId };
 export default CityList;

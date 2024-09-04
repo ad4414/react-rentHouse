@@ -3,19 +3,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSwiper } from "./Store/swiper";
 import { Button, List, Image } from "antd-mobile";
-import groupsReducer, { fetchGroups } from "./Store/swiper/groups";
+import { fetchGroups } from "./Store/swiper/groups";
 import { Grid } from "antd-mobile";
 import nav1 from "../../asets/images/nav-1.png";
 import nav2 from "../../asets/images/nav-2.png";
 import nav3 from "../../asets/images/nav-3.png";
 import nav4 from "../../asets/images/nav-4.png";
 import "../Home/index.scss";
-import { cityValue } from "../CityList";
 import classnames from "classnames";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useSearchParams} from "react-router-dom";
 import { fetchNews } from "./Store/swiper/news";
-
 const Home = React.memo(() => {
+  const [search]=useSearchParams();
+  const cityValue=search.get("cityValue")
   //获取轮播图数据
   const dispatch = useDispatch();
   useEffect(() => {

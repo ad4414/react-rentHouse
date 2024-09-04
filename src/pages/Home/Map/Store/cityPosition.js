@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { cityValue, cityId } from "../../../CityList";
+ 
+import request from "../../../../api/request";
 const newsStore = createSlice({
   name: "groups",
   initialState: {
@@ -18,16 +18,16 @@ const newsStore = createSlice({
 });
 const { setPosition, setCityMessage } = newsStore.actions;
 let positionReducer = newsStore.reducer;
-const fetchPosition = () => {
+const fetchPosition = (cityId) => {
   return async (dispatch) => {
-    const res = await axios.get(`http://localhost:8080/area/map?id=${cityId}`);
+    const res = await request.get(`/area/map?id=${cityId}`);
     dispatch(setPosition(res.data.body));
   };
 };
-const fetchMessage = () => {
+const fetchMessage = (cityValue,cityId) => {
   return async (dispatch) => {
-    const res = await axios.get(
-      `http://localhost:8080/area/community?name=${cityValue}&id=${cityId}`
+    const res = await request.get(
+      `/area/community?name=${cityValue}&id=${cityId}`
     );
     dispatch(setCityMessage(res.data.body));
   };

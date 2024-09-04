@@ -1,9 +1,10 @@
 import { NavBar } from "antd-mobile";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useSearchParams } from "react-router-dom";
 import { Image, Table } from "antd";
-import { res } from "./index";
 const HouseDetail = () => {
   //表格标签
+  const [search]=useSearchParams();
+  const res=search.get("res")
   console.log(res.body.supporting.length === 0);
   const columns = [
     {
@@ -81,7 +82,6 @@ const HouseDetail = () => {
   const back = () => {
     navigate("/findHouse");
   };
-
   console.log(res.body.houseImg);
   return (
     <div>

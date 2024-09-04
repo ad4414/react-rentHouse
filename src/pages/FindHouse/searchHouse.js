@@ -14,12 +14,10 @@ import { Select } from "antd";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchCity, fetchHotCity } from "../Home/Store/swiper/city";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import request from "../../api/request";
 let cityId = "AREA|88cff55c-aaa4-e2e0";
 let city = "北京";
-let houseMessage = [];
 const SearchHouse = () => {
   const options1 = [
     {
@@ -202,9 +200,9 @@ const SearchHouse = () => {
   const [oriented, setOriented] = useState("");
   const navigate = useNavigate();
   const [rentType, setRentType] = useState(true);
-  const onFinish = (values) => {
+  const onFinish =async (values) => {
     console.log(values.stepper);
-    request
+   await request
       .get(
         `
       /houses?cityId=${cityId}&area=${city}&rentType=${rentType}&price=${values.price}&more=${characteristic}%2CFLOOR%7C${values.stepper}%2C${cityId}%2C${oriented}%2C${rentType}&roomType=${roomType}&oriented=${oriented}&characteristic=${characteristic}&floor=FLOOR%7C${values.stepper}&start=1&end=20`
@@ -213,8 +211,8 @@ const SearchHouse = () => {
         console.log(result.data.body.count);
         let count = result.data.body.count;
         if (count !== 0) {
-          houseMessage = result.data.body.list;
-          navigate("/findHouse");
+         let houseMessage = result.data.body.list;
+          navigate("/findHouse",{state:{houseMessage:houseMessage}});
         }
       });
   };
@@ -271,10 +269,10 @@ const SearchHouse = () => {
                       return (
                         <List.Item
                           key={item}
-                          onClick={(e) => {
+                          onClick={async(e) => {
                             setValue(e.target.textContent);
                             setVisible1(false);
-                            request
+                          await  request
                               .get(
                                 `/area/community?name=${e.target.textContent}&id=${item.value}`
                               )
@@ -353,5 +351,5 @@ const SearchHouse = () => {
     </div>
   );
 };
-export { houseMessage };
+ 
 export default SearchHouse;

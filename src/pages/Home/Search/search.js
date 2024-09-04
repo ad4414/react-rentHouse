@@ -1,5 +1,4 @@
 import { SearchBar, NavBar } from "antd-mobile";
-
 import "./index.scss";
 import { Dialog, Toast } from "antd-mobile";
 import { useNavigate } from "react-router-dom";

@@ -1,25 +1,26 @@
 import React, { useEffect } from "react";
 import { NavBar } from "antd-mobile";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Map, APILoader, Label, Marker } from "@uiw/react-baidu-map";
 import { Button, Input } from "antd-mobile";
 import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMessage, fetchPosition } from "./Store/cityPosition";
-import { cityValue } from "../../CityList";
 let BMAP_ANCHOR_TOP_RIGHT = 1;
 const Maps = () => {
   const navigate = useNavigate();
+  const [search] = useSearchParams();
+  const cityValue = search.get("cityValue");
+  const cityId=search.get("cityId");
   //获取输入内容
   const [value, setValue] = useState("");
   //获取地点位置信息
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchPosition());
-    dispatch(fetchMessage());
-  }, [dispatch]);
+    dispatch(fetchPosition(cityId));
+    dispatch(fetchMessage(cityValue,cityId));
+  }, [dispatch,cityId,cityValue]);
   const cityMessage = useSelector((state) => state.position.cityMessage); //城市小区地址信息
   const cityPosition = useSelector((state) => state.position.cityPosition); //城市有房的小区名称
   //提供center信息
@@ -29,7 +30,6 @@ const Maps = () => {
     navigate("/");
   };
   //获取城市选择信息
-
   const handClick = () => {
     setCenter(value);
   };

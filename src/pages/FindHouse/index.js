@@ -1,23 +1,22 @@
 import { NavBar, Image, List } from "antd-mobile";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useSearchParams } from "react-router-dom";
 import { Empty, Pagination } from "antd";
 import { EnvironmentOutline } from "antd-mobile-icons";
-import { houseMessage } from "./searchHouse";
 import { useState } from "react";
 import request from "../../api/request";
-let res;
 const page = 8;
 const cacheMap = new Map();
 const FindHouse = () => {
   const navigate = useNavigate();
+  const [search] = useSearchParams()
+  const houseMessage = search.get("houseMessage");
   let key = "house";
-  cacheMap.set(key, houseMessage);
+  cacheMap.set(key,houseMessage);
   let houseAll = cacheMap.get(key);
   const back = () => {
     navigate("/");
   };
   const [currentPage, setCurrentPage] = useState(1);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -61,13 +60,13 @@ const FindHouse = () => {
                   />
                 }
                 description={ele.desc}
-                onClick={() => {
-                  request.get(
+                onClick={async() => {
+                await  request.get(
                      `/houses/${ele.houseCode}`,
                   ).then((result) => {
                     console.log(result);
-                    res = result.data;
-                    navigate("/houseDetail");
+                   let res = result.data;
+                    navigate("/houseDetail",{state:{res:res}});
                   });
                 }}
               >
@@ -92,5 +91,5 @@ const FindHouse = () => {
     </div>
   );
 };
-export { res };
+ 
 export default FindHouse;
