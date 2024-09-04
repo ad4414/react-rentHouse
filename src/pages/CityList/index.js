@@ -76,7 +76,7 @@ const City = React.memo(() => {
                       } else {
                         cityValue = e.target.textContent;
                         cityId = item.value;
-                        navigate("/",{state:{cityValue,cityId}});
+                        navigate("/",{state:{cityValue:cityValue,cityId:cityId}});
                       }
                     });
                   }}

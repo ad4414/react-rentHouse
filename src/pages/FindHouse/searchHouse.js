@@ -147,7 +147,6 @@ const SearchHouse = () => {
     dispatch(fetchHotCity());
   }, [dispatch]);
   const cacheMap = new Map();
-
   let key = "city";
   let key1 = "hot";
   cacheMap.set(
@@ -200,12 +199,13 @@ const SearchHouse = () => {
   const [oriented, setOriented] = useState("");
   const navigate = useNavigate();
   const [rentType, setRentType] = useState(true);
+  const form=Form.useForm()
   const onFinish =async (values) => {
     console.log(values.stepper);
    await request
       .get(
         `
-      /houses?cityId=${cityId}&area=${city}&rentType=${rentType}&price=${values.price}&more=${characteristic}%2CFLOOR%7C${values.stepper}%2C${cityId}%2C${oriented}%2C${rentType}&roomType=${roomType}&oriented=${oriented}&characteristic=${characteristic}&floor=FLOOR%7C${values.stepper}&start=1&end=20`
+      /houses?cityId=${cityId}&area=${city}&rentType=${rentType}&price=${values.price}&more=${characteristic}%2CFLOOR%7C${values.stepper}%2C${cityId}%2C${oriented}%2C${rentType}&roomType=${roomType}&oriented=${oriented}&characteristic=${characteristic}&floor=${values.stepper}%7C${values.stepper}&start=1`
       )
       .then((result) => {
         console.log(result.data.body.count);
@@ -215,8 +215,8 @@ const SearchHouse = () => {
           navigate("/findHouse",{state:{houseMessage:houseMessage}});
         }
       });
+      form.setFieldsValue(values)
   };
-
   const [visible, setVisible1] = useState(false);
   const [value, setValue] = useState("选择城市");
   return (
@@ -227,6 +227,7 @@ const SearchHouse = () => {
       <Form
         name="form"
         onFinish={onFinish}
+        form={form}
         footer={
           <Button block type="submit" color="primary" size="large">
             搜索
@@ -237,7 +238,7 @@ const SearchHouse = () => {
         <Form.Item
           name="price"
           label="价格"
-          help="将会显示满足该价格一下的房屋"
+          help="将会显示满足该价格一下的房屋，非必选项"
         >
           <Input placeholder="请输入价格" />
         </Form.Item>
@@ -316,7 +317,9 @@ const SearchHouse = () => {
             onChange={(arr) => setRoomType(arr[0])}
           />
         </Form.Item>
-        <Form.Item label="房屋朝向">
+        <Form.Item label="房屋朝向"
+         help="可以选择房屋朝向，该选项不是必选项"
+        >
           <Selector
             options={options3}
             defaultValue={["2", "3"]}
@@ -335,9 +338,10 @@ const SearchHouse = () => {
         </Form.Item>
         <Form.Item
           initialValue={0}
+           help="选择自己心仪的楼层，为必选项"
           rules={[
             {
-              max: 5,
+              max: 10,
               min: 1,
               type: "number",
             },

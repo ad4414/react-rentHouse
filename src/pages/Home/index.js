@@ -49,12 +49,9 @@ const Home = React.memo(() => {
   const handClick = () => {
     navigate("/findHouse");
   };
-  const [id, setId] = useState(0);
-  const hightLightClick = (uid) => {
-    setId(uid);
-    setTimeout(() => {
-      setId(0);
-    }, 300);
+  
+  const hightLightClick = () => {
+    navigate(0)
   };
 
   //获取点击城市
@@ -140,8 +137,8 @@ const Home = React.memo(() => {
           return (
             <div
               key={ele.id}
-              className={classnames("box", ele.id === id ? "highlight" : "")}
-              onClick={() => hightLightClick(ele.id)}
+              className={"box highlight"}
+              onClick={hightLightClick()}
             >
               <div className="box2" style={{ flex: 1, textAlign: "left" }}>
                 <Image
