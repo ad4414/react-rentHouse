@@ -1,16 +1,15 @@
-.canvas{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.canvas {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .eye {
-    padding: 4px;
-    cursor: pointer;
-    svg {
-      display: block;
-      font-size: var(--adm-font-size-7);
-    }
+  padding: 4px;
+  cursor: pointer;
+  svg {
+    display: block;
+    font-size: var(--adm-font-size-7);
   }
-  
+}

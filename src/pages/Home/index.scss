@@ -1,17 +1,16 @@
-.nav{
-    padding: 10px;
+.nav {
+  padding: 10px;
 }
-.nav img{
-    
-    width: 48px;
-     margin-left: 3px;
+.nav img {
+  width: 48px;
+  margin-left: 3px;
 }
-.nav h2{
-    font-size: 13px;
-    font-weight: normal;
-    margin-left:5px;
+.nav h2 {
+  font-size: 13px;
+  font-weight: normal;
+  margin-left: 5px;
 }
-.swiper{
+.swiper {
   width: 100%;
   height: 250px;
 }
@@ -21,97 +20,93 @@
   border: none;
   border-radius: 16px;
   padding-left: 10px;
-  background-color: rgba(255, 255, 255, .2);
+  background-color: rgba(255, 255, 255, 0.2);
   color: white;
   font-size: 14px;
 }
- .search{
+.search {
   width: 100%;
   display: flex;
   height: 30px;
 }
-.btn{
+.btn {
   width: 15%;
   height: 30px;
 }
-.nav .adm-grid-item{
-    text-align: center;
-     
+.nav .adm-grid-item {
+  text-align: center;
 }
 .groups {
-    background-color: #f6f5f6;
-    overflow: hidden;
-    padding: 0 10px;
-.title{
+  background-color: #f6f5f6;
+  overflow: hidden;
+  padding: 0 10px;
+  .title {
     position: relative;
     margin: 15px 0px 15px 10px;
     font-size: 15px;
- }
- .more{
+  }
+  .more {
     color: #787d82;
     position: absolute;
     right: 0;
     font-size: 14px;
     font-weight: normal;
- }
+  }
 }
- 
+
 .container {
-    width: 100%;
-    display: grid;
-    background-color:lightblue;
-    grid-template-columns: 50% 50% ;
-    grid-template-rows: 100px 100px ;
-    grid-row-gap: 10px;
+  width: 100%;
+  display: grid;
+  background-color: lightblue;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100px 100px;
+  grid-row-gap: 10px;
   grid-column-gap: 10px;
-  }
-   
-  .imgGrid{
-    width: 70%;
-    height: 50%;
 }
-.box2{
-    width: 25%;
-    height: 100%;
+
+.imgGrid {
+  width: 70%;
+  height: 50%;
 }
-  .box{
-      display: flex;
-      align-items: center;
-     background-color: #f6f5f6;
-     border-top: 1px solid black;
-     border-bottom: 1px solid black;
-     border-left: 1px solid black;
-     border-right: 1px solid black;
-    }
-  .highlight {
-    background-color: yellow;
+.box2 {
+  width: 25%;
+  height: 100%;
 }
-  .text{
-     white-space: nowrap;
-     font-size: 13px;
-     text-align: left;
-  }
-  .box1{
-    left: 50px;
-    text-align: center;
-  }
-  .news {
-    background-color: #f6f5f6;
-    padding: 0px 10px;
-    
-.title{
+.box {
+  display: flex;
+  align-items: center;
+  background-color: #f6f5f6;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.highlight {
+  background-color: yellow;
+}
+.text {
+  white-space: nowrap;
+  font-size: 13px;
+  text-align: left;
+}
+.box1 {
+  left: 50px;
+  text-align: center;
+}
+.news {
+  background-color: #f6f5f6;
+  padding: 0px 10px;
+
+  .title {
     position: relative;
     margin: 15px 0px 15px 10px;
     font-size: 15px;
- }
- .more{
+  }
+  .more {
     color: #787d82;
     position: absolute;
     right: 0;
     font-size: 14px;
     font-weight: normal;
- }
+  }
 }
-   
-  
-   

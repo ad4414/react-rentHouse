@@ -1,10 +1,7 @@
-import { Navigate } from 'react-router-dom'
- 
-const AuthRouter=({children})=>{
-    
-         return <Navigate to='/login' replace/>
-    
-   
-}
+import { Navigate } from "react-router-dom";
 
-export default AuthRouter
+const AuthRouter = ({ children }) => {
+  return <Navigate to="/login" replace />;
+};
+
+export default AuthRouter;
